@@ -79,6 +79,7 @@ export default {
 	data() {
 		return {
 			noPolls: false,
+			allowCreate: false,
 			loading: true,
 			polls: []
 		}
