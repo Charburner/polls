@@ -23,7 +23,7 @@
 <template>
 	<div id="app-content">
 		<controls>
-			<router-link :to="{ name: 'create'}" class="button">
+			<router-link v-if="allowCreate" :to="{ name: 'create'}" class="button">
 				<span class="symbol icon-add" />
 				<span class="hidden-visually">
 					{{ t('polls', 'New') }}
@@ -34,7 +34,7 @@
 		<div v-if="noPolls" class="">
 			<div class="icon-polls" />
 			<h2> {{ t('No existing polls.') }} </h2>
-			<router-link :to="{ name: 'create'}" class="button new">
+			<router-link v-if="allowCreate" :to="{ name: 'create'}" class="button new">
 				<span>{{ t('polls', 'Click here to add a poll') }}</span>
 			</router-link>
 		</div>
