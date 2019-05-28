@@ -49,7 +49,7 @@
 				key="0"
 				:header="true"
 			/>
-			<li
+			<li v-if="allowCreate"
 				is="poll-list-item"
 				v-for="(poll, index) in polls"
 				:key="poll.id"
