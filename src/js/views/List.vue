@@ -49,11 +49,12 @@
 				key="0"
 				:header="true"
 			/>
-			<li v-if="allowCreate"
+			<li
 				is="poll-list-item"
 				v-for="(poll, index) in polls"
 				:key="poll.id"
 				:poll="poll"
+				v-if="allowCreate"
 				@deletePoll="removePoll(index, poll.event)"
 				@editPoll="editPoll(index, poll.event, 'edit')"
 				@clonePoll="editPoll(index, poll.event, 'clone')"
