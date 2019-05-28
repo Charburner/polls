@@ -98,7 +98,7 @@ export default {
 				this.allowCreate = true
 			}
 		},
-		
+
 		loadPolls() {
 			this.loading = true
 			this.$http.get(OC.generateUrl('apps/polls/get/polls'))
