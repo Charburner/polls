@@ -41,6 +41,7 @@
 
 		<transition-group
 			v-if="!noPolls"
+			v-if="allowCreate"
 			name="list"
 			tag="div"
 			class="table"
@@ -54,7 +55,6 @@
 				v-for="(poll, index) in polls"
 				:key="poll.id"
 				:poll="poll"
-				v-if="allowCreate"
 				@deletePoll="removePoll(index, poll.event)"
 				@editPoll="editPoll(index, poll.event, 'edit')"
 				@clonePoll="editPoll(index, poll.event, 'clone')"
