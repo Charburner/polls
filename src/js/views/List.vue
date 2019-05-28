@@ -87,10 +87,18 @@ export default {
 
 	created() {
 		this.indexPage = OC.generateUrl('apps/polls/')
+		this.checkCreatePermission()
 		this.loadPolls()
 	},
 
 	methods: {
+		checkCreatePermission() {
+			this.allowCreate = false
+			if (OC.getCurrentUser().uid === 'jk' || OC.isUserAdmin()) {
+				this.allowCreate = true
+			}
+		},
+		
 		loadPolls() {
 			this.loading = true
 			this.$http.get(OC.generateUrl('apps/polls/get/polls'))
