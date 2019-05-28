@@ -40,7 +40,6 @@
 		</div>
 
 		<transition-group
-			v-if="!noPolls"
 			v-if="allowCreate"
 			name="list"
 			tag="div"
