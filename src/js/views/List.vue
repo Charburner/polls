@@ -121,7 +121,7 @@ export default {
 		},
 
 		clonePoll(index, event, name) {
-			if (allowCreate) {
+			if (this.allowCreate) {
 				this.$router.push({
 					name: name,
 					params: {
