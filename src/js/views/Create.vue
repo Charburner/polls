@@ -401,35 +401,37 @@ export default {
 
 	created() {
 		this.checkCreatePermission()
-		this.indexPage = OC.generateUrl('apps/polls/')
-		this.getSystemValues()
-		this.lang = OC.getLanguage()
-		try {
-			this.locale = OC.getLocale()
-		} catch (e) {
-			if (e instanceof TypeError) {
-				this.locale = this.lang
-			} else {
-				/* eslint-disable-next-line no-console */
-				console.log(e)
+		if ($this.allowCreate) {
+			this.indexPage = OC.generateUrl('apps/polls/')
+			this.getSystemValues()
+			this.lang = OC.getLanguage()
+			try {
+				this.locale = OC.getLocale()
+			} catch (e) {
+				if (e instanceof TypeError) {
+					this.locale = this.lang
+				} else {
+					/* eslint-disable-next-line no-console */
+					console.log(e)
+				}
 			}
-		}
-		moment.locale(this.locale)
-		this.longDateFormat = moment.localeData().longDateFormat('L')
-		this.dateTimeFormat = moment.localeData().longDateFormat('L') + ' ' + moment.localeData().longDateFormat('LT')
+			moment.locale(this.locale)
+			this.longDateFormat = moment.localeData().longDateFormat('L')
+			this.dateTimeFormat = moment.localeData().longDateFormat('L') + ' ' + moment.localeData().longDateFormat('LT')
 
-		if (this.$route.name === 'create') {
-			this.poll.event.owner = OC.getCurrentUser().uid
-			this.loadingPoll = false
-		} else if (this.$route.name === 'edit') {
-			this.loadPoll(this.$route.params.hash)
-			this.protect = true
-			this.poll.mode = 'edit'
-		} else if (this.$route.name === 'clone') {
-			this.loadPoll(this.$route.params.hash)
-		}
-		if (window.innerWidth > 1024) {
-			this.sidebar = true
+			if (this.$route.name === 'create') {
+				this.poll.event.owner = OC.getCurrentUser().uid
+				this.loadingPoll = false
+			} else if (this.$route.name === 'edit') {
+				this.loadPoll(this.$route.params.hash)
+				this.protect = true
+				this.poll.mode = 'edit'
+			} else if (this.$route.name === 'clone') {
+				this.loadPoll(this.$route.params.hash)
+			}
+			if (window.innerWidth > 1024) {
+				this.sidebar = true
+			}
 		}
 	},
 
