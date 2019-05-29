@@ -40,7 +40,6 @@
 		</div>
 
 		<transition-group
-			v-if="allowCreate"
 			name="list"
 			tag="div"
 			class="table"
@@ -122,12 +121,14 @@ export default {
 		},
 
 		clonePoll(index, event, name) {
-			this.$router.push({
-				name: name,
-				params: {
-					hash: event.id
-				}
-			})
+			if (allowCreate) {
+				this.$router.push({
+					name: name,
+					params: {
+						hash: event.id
+					}
+				})
+			}
 		},
 
 		removePoll(index, event) {
