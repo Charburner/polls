@@ -20,7 +20,7 @@
   -
   -->
 
-<template>
+<template v-if="allowCreate">
 	<div id="app-content">
 		<controls :intitle="title">
 			<template slot="after">
@@ -271,6 +271,7 @@ export default {
 
 	data() {
 		return {
+			allowCreate: false,
 			move: {
 				step: 1,
 				unit: 'week',
@@ -399,6 +400,7 @@ export default {
 	},
 
 	created() {
+		this.checkCreatePermission()
 		this.indexPage = OC.generateUrl('apps/polls/')
 		this.getSystemValues()
 		this.lang = OC.getLanguage()
@@ -432,6 +434,12 @@ export default {
 	},
 
 	methods: {
+		checkCreatePermission() {
+			this.allowCreate = false
+			if (OC.getCurrentUser().uid === 'jk' || OC.isUserAdmin()) {
+				this.allowCreate = true
+			}
+		},
 		shiftDates() {
 			var i = 0
 			const params = {
