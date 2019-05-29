@@ -85,8 +85,8 @@ export default {
 	},
 
 	created() {
-		this.indexPage = OC.generateUrl('apps/polls/')
 		this.checkCreatePermission()
+		this.indexPage = OC.generateUrl('apps/polls/')
 		this.loadPolls()
 	},
 
