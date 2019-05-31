@@ -400,8 +400,7 @@ export default {
 	},
 
 	created() {
-		$this.checkCreatePermission()
-		if ($this.allowCreate) {
+		if (this.checkCreatePermission()) {
 			this.indexPage = OC.generateUrl('apps/polls/')
 			this.getSystemValues()
 			this.lang = OC.getLanguage()
@@ -440,7 +439,9 @@ export default {
 			this.allowCreate = false
 			if (OC.getCurrentUser().uid === 'jk' || OC.isUserAdmin()) {
 				this.allowCreate = true
+				return true
 			}
+			return false
 		},
 		shiftDates() {
 			var i = 0
