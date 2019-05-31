@@ -400,7 +400,7 @@ export default {
 	},
 
 	created() {
-		this.checkCreatePermission()
+		$this.checkCreatePermission()
 		if ($this.allowCreate) {
 			this.indexPage = OC.generateUrl('apps/polls/')
 			this.getSystemValues()
